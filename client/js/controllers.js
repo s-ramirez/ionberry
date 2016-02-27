@@ -3,12 +3,16 @@
 
     angular
       .module('app.controllers', ['ngElectron'])
-      .controller('MainController', ['$scope', '$rootScope','electron', '$mdDialog', '$mdMedia', '$mdSidenav', 'gitService', MainController])
-      .controller('DialogController', ['$scope', '$mdDialog', 'gitService', DialogController]);
+      .controller('MainController', ['$scope', '$rootScope', '$location', 'electron', '$mdDialog', '$mdMedia', '$mdSidenav', 'gitService', MainController])
+      .controller('DialogController', ['$scope', '$mdDialog', 'gitService', DialogController])
+      .controller('RepoController', ['$rootScope', '$routeParams','gitService', RepoController]);
 
-    function MainController($scope, $rootScope, electron, $mdDialog, $mdMedia, $mdSidenav, gitService) {
+    // Main controller
+    function MainController($scope, $rootScope, $location, electron, $mdDialog, $mdMedia, $mdSidenav, gitService) {
       var vm = this;
       //listen for host messages
+      $rootScope.title = "Repositories";
+      $rootScope.options = 0;
 
       vm.user = {
         name: 's-ramirez',
@@ -27,17 +31,17 @@
         return 'client/img/octo.'+random+'.png';
       }
 
-      $rootScope.$on('electron-host', function( evt, data ) {
-        console.log( data );
-      });
-
-      //Click face handler
-      vm.clone = function() {
-
-      }
-
       vm.toggleSidenav = function() {
         $mdSidenav('left').toggle();
+      }
+
+      vm.navigateTo = function(url) {
+        $location.path(url);
+        $mdSidenav('left').toggle();
+      }
+
+      vm.openRepo = function(repo) {
+        $location.path('/repo/').search(repo);
       }
 
       vm.cloneDialog = function(ev) {
@@ -65,6 +69,7 @@
       vm.init();
     }
 
+    // Dialog Controller
     function DialogController($scope, $mdDialog, gitService) {
       $scope.hide = function() {
         $mdDialog.hide();
@@ -84,5 +89,52 @@
           }
         });
       };
+    }
+
+    // Repo Controller
+    function RepoController($rootScope, $routeParams, gitService) {
+      var vm = this;
+
+      vm.selected = [];
+
+      vm.repo = {
+        name: $routeParams.name,
+        path: $routeParams.path,
+        url: $routeParams.url
+      };
+
+      $rootScope.title = vm.repo.name;
+      $rootScope.options = 1;
+
+      vm.init = function () {
+        vm.loading = true;
+        gitService.log(vm.repo.path).then(function(results) {
+          if(!results.error)
+            vm.commits = results.success.all;
+          vm.loading = false;
+        });
+        vm.refresh();
+      }
+
+      vm.refresh = function (ev) {
+        gitService.status(vm.repo.path).then(function(results) {
+          if(!results.error) {
+            vm.status = results.success;
+
+            vm.changes = 0;
+            vm.changes += vm.status.conflicted.length;
+            vm.changes += vm.status.created.length;
+            vm.changes += vm.status.deleted.length;
+            vm.changes += vm.status.modified.length;
+            vm.changes += vm.status.not_added.length;
+          }
+        });
+      }
+
+      vm.query = {
+        order: 'date',
+      };
+
+      vm.init();
     }
 })();

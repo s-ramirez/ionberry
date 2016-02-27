@@ -1,20 +1,17 @@
 {
-  "name": "amy-dev",
-  "version": "0.2.0",
+  "name": "ionberry-dev",
+  "version": "0.0.1",
   "authors": [
-    "Chris Byerley <cbyerley@develephant.com>"
+    "Sebastian Ramirez<sramirez10r@gmail.com.com>"
   ],
-  "description": "An AngularJS, Material UI, and Electron starter app with batteries for AngularJS.",
   "keywords": [
     "AngularJS",
-    "Electron",
-    "starter"
+    "Electron"
   ],
   "repository": {
     "type": "git"
   },
   "license": "MIT",
-  "homepage": "http://www.develephant.com",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -30,6 +27,8 @@
     "angular-route": "~1.4.3",
     "fira-compact": "develephant/fira-compact#~0.1.0",
     "jquery": "~2.1.4",
-    "material-design-icons-iconfont": "~2.0.3"
+    "material-design-icons-iconfont": "~2.0.3",
+    "angular-material-data-table": "~0.9.11",
+    "angular-dragula": "~1.2.5"
   }
 }

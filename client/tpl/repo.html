@@ -1,0 +1,23 @@
+<div ng-include="'client/tpl/header.html'"></div>
+<div layout="column" layout-align="top center" flex>
+  <md-table-container>
+    <table md-table md-progress="repo.loading">
+      <thead md-head md-order="repo.query.order">
+        <tr md-row>
+          <th md-column>Message</th>
+          <th md-column>Author</th>
+          <th md-column md-numeric>Date</th>
+          <th md-column>Hash</th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row ng-repeat="commit in repo.commits">
+          <td md-cell>{{::commit.message}}</td>
+          <td md-cell>{{::commit.author_name}} <{{::commit.author_email}}></td>
+          <td md-cell>{{::commit.date | date: 'MM/dd/yyyy'}}</td>
+          <td md-cell>{{::commit.hash}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </md-table-container>
+</div>

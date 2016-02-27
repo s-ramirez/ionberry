@@ -11,11 +11,10 @@
     var service = {
       clone: clone,
       loadRepos: loadRepos,
-      addRepo: addRepo
-    }
-
-    function error() {
-      return false;
+      addRepo: addRepo,
+      status: status,
+      fetch: fetch,
+      log: log
     }
 
     function clone(url, path, name) {
@@ -25,6 +24,48 @@
           defer.resolve(addRepo({'url': url, 'path': path, 'name': name}));
         } else {
           console.log('Error cloning repository');
+          defer.resolve({error: response})
+        }
+      });
+      return defer.promise;
+    }
+
+    function fetch(path) {
+      var defer = $q.defer();
+      var local = require('simple-git')(__dirname + '/'+ path);
+
+      local.fetch(function(error, response) {
+        if(!response) {
+          defer.resolve({success: response });
+        } else {
+          defer.resolve({error: response});
+        }
+      });
+      return defer.promise;
+    }
+
+    function status(path) {
+      var defer = $q.defer();
+      var local = require('simple-git')(__dirname + '/' + path);
+
+      local.status(function(error, response) {
+        if(!error) {
+          defer.resolve({success: response});
+        } else {
+          defer.resolve({error: response});
+        }
+      });
+      return defer.promise;
+    }
+
+    function log(path) {
+      var defer = $q.defer();
+      var local = require('simple-git')(__dirname + '/'+ path);
+
+      local.log(function(error, response) {
+        if(!error) {
+          defer.resolve({success: response });
+        } else {
           defer.resolve({error: response})
         }
       });

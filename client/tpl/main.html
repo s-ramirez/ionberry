@@ -1,7 +1,8 @@
+<div ng-include="'client/tpl/header.html'"></div>
 <div layout="column" layout-align="top center" flex>
     <md-content class="md-padding" layout="row" layout-wrap>
         <div class="repo-card" ng-repeat="repo in main.settings.repos" flex="33" layout="column">
-          <md-card>
+          <md-card ng-click="main.openRepo(repo)" >
            <md-card-header>
              <md-card-avatar>
                <img class="logo" src="client/img/git.svg"/>

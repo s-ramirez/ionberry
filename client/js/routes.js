@@ -5,5 +5,10 @@ function($routeProvider) {
   .when('/', {
     templateUrl: "client/tpl/main.html"
   })
+  .when('/repo', {
+    templateUrl: "client/tpl/repo.html",
+    controller: "RepoController",
+    controllerAs: "repo"
+  })
   .otherwise('/');
 }]);

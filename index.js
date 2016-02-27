@@ -39,7 +39,7 @@ app.on('window-all-closed', function () {
 	}
 });
 
-app.on('activate-with-no-open-windows', function () {
+app.on('activate', function () {
 	if (!mainWindow) {
 		mainWindow = createMainWindow();
 	}
