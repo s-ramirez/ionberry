@@ -1,5 +1,29 @@
 {
-    "name": "ionberry",
-    "version": "0.0.1",
-    "main": "main.js"
+  "name": "ionberry",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s-ramirez/ionberry.git"
+  },
+  "keywords": [
+    "Electron",
+    "Material",
+    "UI",
+    "AngularJS",
+    "starter",
+    "template",
+    "stack",
+    "barebones"
+  ],
+  "engines": {
+    "atom-shell": "0.36.9"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "diskdb": "^0.1.14",
+    "electron-debug": "^0.5.1",
+    "electron-prebuilt": "^0.36.9",
+    "nodegit": "^0.11.5"
+  }
 }

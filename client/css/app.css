@@ -1,0 +1,7 @@
+body {
+  font-family: 'Helvetica Neue' !important;
+}
+
+md-dialog {
+  min-width: 50%; 
+}

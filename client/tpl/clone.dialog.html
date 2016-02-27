@@ -1,0 +1,29 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Clone repository</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon id="close-icon">close</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-input-container>
+          <label>Repo URL</label>
+          <input ng-model="$scope.url">
+        </md-input-container>
+        <md-input-container>
+          <label>Location</label>
+          <input ng-model="$scope.path">
+        </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" layout-align="end center">
+      <md-button ng-click="answer('useful')" class="md-primary">
+        Clone
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
