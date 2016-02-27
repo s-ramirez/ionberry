@@ -1,7 +1,19 @@
 <div layout="column" layout-align="center center" flex>
-    <md-content>
-      <div layout="row" layout-align="center center">
-        <h3>Let's go!</h3>
-      </div>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div ng-repeat="repo in main.settings.repos" flex-xs flex-gt-xs="50" layout="column">
+          <md-card>
+            <img ng-src="client/img/octocat.png" class="md-card-image" alt="Repo">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{::repo}}</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button>Action 1</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
     </md-content>
 </div>

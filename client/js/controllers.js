@@ -3,12 +3,18 @@
 
     angular
       .module('app.controllers', ['ngElectron'])
-      .controller('MainController', ['$scope', '$rootScope','electron', '$mdDialog', '$mdMedia', MainController])
+      .controller('MainController', ['$scope', '$rootScope','electron', '$mdDialog', '$mdMedia', 'gitService', MainController])
       .controller('DialogController', ['$scope', '$mdDialog', 'gitService', DialogController]);
 
-    function MainController($scope, $rootScope, electron, $mdDialog, $mdMedia) {
+    function MainController($scope, $rootScope, electron, $mdDialog, $mdMedia, gitService) {
       var vm = this;
       //listen for host messages
+
+      vm.init = function() {
+        gitService.loadRepos().then(function(repos) {
+          vm.settings = repos;
+        });
+      }
 
       $rootScope.$on('electron-host', function( evt, data ) {
         console.log( data );
@@ -18,6 +24,7 @@
       vm.clone = function() {
 
       }
+
       vm.cloneDialog = function(ev) {
         var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
         $mdDialog.show({
@@ -39,6 +46,8 @@
           $scope.customFullscreen = (wantsFullScreen === true);
         });
       };
+
+      vm.init();
     }
 
     function DialogController($scope, $mdDialog, gitService) {
@@ -49,8 +58,16 @@
         $mdDialog.cancel();
       };
       $scope.clone = function() {
-        $mdDialog.hide();
-        gitService.clone($scope.url, $scope.path)
+        $scope.error = false;
+        $scope.cloning = true;
+        gitService.clone($scope.url, $scope.path).then(function(response) {
+          $scope.cloning = false;
+          if(response && !response.error) {
+            $mdDialog.hide();
+          } else {
+            $scope.error = response.error;
+          }
+        });
       };
     }
 })();
