@@ -22,15 +22,16 @@
 </head>
 
 <!-- MainController binds body tag scope -->
-<body layout="column" ng-controller="MainController as main" ng-cloak>
-
+<body layout="row" ng-controller="MainController as main" ng-cloak>
     <!-- Include header : found in client/tpl folder -->
-    <div ng-include="'client/tpl/header.html'"></div>
+    <div layout="column" ng-include="'client/tpl/sidenav.html'"></div>
 
     <!-- Main ng-view layout with MaterialUI -->
     <!-- This is where your content shows up when routes change. -->
     <!-- You probably should'nt edit this this until you're ready. :) -->
     <div layout="column" id="content" flex>
+      <!-- Include header : found in client/tpl folder -->
+      <div ng-include="'client/tpl/header.html'"></div>
       <ng-view layout="column" class="md-paddding" flex></ng-view>
     </div>
 

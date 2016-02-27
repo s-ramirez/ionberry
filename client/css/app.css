@@ -11,6 +11,37 @@ md-dialog {
   min-width: 50%;
 }
 
+#sidenav md-content{
+  background-color: white !important;
+}
+
+#sidenav .user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 15px auto 10px;
+}
+
+#sidenav .user-information {
+  display: block;
+  text-align: center;
+  height: 21px;
+}
+
+#sidenav h3.user-information {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+#sidenav .user-data {
+  position: relative;
+  overflow: hidden;
+}
+
+#sidenav .user-exp {
+  margin-bottom: 5px;
+}
+
 #clone-dialog md-input-container {
   padding-bottom: 10px
 }

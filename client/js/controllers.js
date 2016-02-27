@@ -3,12 +3,18 @@
 
     angular
       .module('app.controllers', ['ngElectron'])
-      .controller('MainController', ['$scope', '$rootScope','electron', '$mdDialog', '$mdMedia', 'gitService', MainController])
+      .controller('MainController', ['$scope', '$rootScope','electron', '$mdDialog', '$mdMedia', '$mdSidenav', 'gitService', MainController])
       .controller('DialogController', ['$scope', '$mdDialog', 'gitService', DialogController]);
 
-    function MainController($scope, $rootScope, electron, $mdDialog, $mdMedia, gitService) {
+    function MainController($scope, $rootScope, electron, $mdDialog, $mdMedia, $mdSidenav, gitService) {
       var vm = this;
       //listen for host messages
+
+      vm.user = {
+        name: 's-ramirez',
+        lvl: 10,
+        exp: 80
+      }
 
       vm.init = function() {
         gitService.loadRepos().then(function(repos) {
@@ -28,6 +34,10 @@
       //Click face handler
       vm.clone = function() {
 
+      }
+
+      vm.toggleSidenav = function() {
+        $mdSidenav('left').toggle();
       }
 
       vm.cloneDialog = function(ev) {

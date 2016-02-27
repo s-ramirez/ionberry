@@ -1,0 +1,28 @@
+<md-sidenav flex layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" id="sidenav" md-is-locked-open="$mdMedia('gt-md')">
+  <md-toolbar class="user-data md-primary md-hue-2">
+    <img class="user-image" src="https://lh6.googleusercontent.com/-m32wN5pQw2Q/VhMsTWsKJDI/AAAAAAAALWM/1anmFkVxmNU/s722-no/IMG_0858.JPG"/>
+    <h2 class="md-toolbar-tools user-information">{{main.user.name}}</h2>
+    <h3 class="md-toolbar-tools user-information">Level: {{main.user.lvl}}</h3>
+    <md-progress-linear class="user-exp md-warn" md-mode="determinate" value="{{main.user.exp}}"></md-progress-linear>
+  </md-toolbar>
+  <md-content flex layout-padding>
+    <md-list-item ng-click="test()">
+      <md-button class="md-icon-button">
+        <md-icon>dashboard</md-icon>
+      </md-button>
+      <p>Repositories</p>
+    </md-list-item>
+    <md-list-item ng-click="test()">
+      <md-button class="md-icon-button">
+        <md-icon>assignment_turned_in</md-icon>
+      </md-button>
+      <p>Achievements</p>
+    </md-list-item>
+    <md-list-item ng-click="test()">
+      <md-button class="md-icon-button">
+        <md-icon>settings</md-icon>
+      </md-button>
+      <p>Settings</p>
+    </md-list-item>
+  </md-content>
+</md-sidenav>
