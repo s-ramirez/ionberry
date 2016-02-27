@@ -3,5 +3,36 @@ body {
 }
 
 md-dialog {
-  min-width: 50%; 
+  min-width: 50%;
+}
+
+.repo-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.repo-card .md-title {
+  position: absolute;
+  top: 15px;
+}
+
+.repo-card .md-subhead {
+  position: absolute;
+  top: 34px;
+  font-size: 12px;
+}
+
+.repo-card .md-card-image {
+    max-width: 70%;
+    padding: 10px;
+    text-align: center;
+}
+
+.repo-card .repo-image {
+  text-align: center;
+}
+
+.repo-card .logo {
+  width: 35px;
+  margin: 10px;
 }

@@ -16,6 +16,11 @@
         });
       }
 
+      vm.randomImage = function(){
+        var random = Math.floor(Math.random() * (5 - 1)) + 1;
+        return 'client/img/octo.'+random+'.png';
+      }
+
       $rootScope.$on('electron-host', function( evt, data ) {
         console.log( data );
       });

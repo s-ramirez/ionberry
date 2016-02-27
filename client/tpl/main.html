@@ -1,18 +1,19 @@
 <div layout="column" layout-align="center center" flex>
-    <md-content class="md-padding" layout-xs="column" layout="row">
-        <div ng-repeat="repo in main.settings.repos" flex-xs flex-gt-xs="50" layout="column">
+    <md-content class="md-padding" layout="row" layout-wrap>
+        <div class="repo-card" ng-repeat="repo in main.settings.repos" flex="33" layout="column">
           <md-card>
-            <img ng-src="client/img/octocat.png" class="md-card-image" alt="Repo">
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline">{{::repo}}</span>
-              </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-            </md-card-content>
-            <md-card-actions layout="row" layout-align="end center">
-              <md-button>Action 1</md-button>
-            </md-card-actions>
+           <md-card-header>
+             <md-card-avatar>
+               <img class="logo" src="client/img/git.svg"/>
+             </md-card-avatar>
+             <md-card-header-text>
+               <span class="md-title">{{::repo}}</span>
+               <span class="md-subhead">Material</span>
+             </md-card-header-text>
+           </md-card-header>
+           <div class="repo-image">
+             <img class="md-card-image" ng-src="{{::main.randomImage()}}"/>
+           </div>
           </md-card>
         </div>
     </md-content>
