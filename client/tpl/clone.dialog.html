@@ -1,4 +1,4 @@
-<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+<md-dialog ng-cloak>
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -13,15 +13,15 @@
       <div class="md-dialog-content">
         <md-input-container>
           <label>Repo URL</label>
-          <input ng-model="$scope.url">
+          <input ng-model="url">
         </md-input-container>
         <md-input-container>
           <label>Location</label>
-          <input ng-model="$scope.path">
+          <input ng-model="path">
         </md-input-container>
     </md-dialog-content>
     <md-dialog-actions layout="row" layout-align="end center">
-      <md-button ng-click="answer('useful')" class="md-primary">
+      <md-button ng-click="clone()" class="md-primary">
         Clone
       </md-button>
     </md-dialog-actions>

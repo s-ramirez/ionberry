@@ -23,7 +23,8 @@
   "dependencies": {
     "diskdb": "^0.1.14",
     "electron-debug": "^0.5.1",
+    "electron-json-storage": "^2.0.0",
     "electron-prebuilt": "^0.36.9",
-    "nodegit": "^0.11.5"
+    "simple-git": "^1.26.2"
   }
 }

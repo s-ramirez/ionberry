@@ -4,7 +4,7 @@
     angular
       .module('app.controllers', ['ngElectron'])
       .controller('MainController', ['$scope', '$rootScope','electron', '$mdDialog', '$mdMedia', MainController])
-      .controller('DialogController', ['$scope', '$mdDialog', DialogController]);
+      .controller('DialogController', ['$scope', '$mdDialog', 'gitService', DialogController]);
 
     function MainController($scope, $rootScope, electron, $mdDialog, $mdMedia) {
       var vm = this;
@@ -41,16 +41,16 @@
       };
     }
 
-    function DialogController($scope, $mdDialog) {
+    function DialogController($scope, $mdDialog, gitService) {
       $scope.hide = function() {
         $mdDialog.hide();
       };
       $scope.cancel = function() {
         $mdDialog.cancel();
       };
-      $scope.answer = function(answer) {
+      $scope.clone = function() {
         $mdDialog.hide();
-
+        gitService.clone($scope.url, $scope.path)
       };
     }
 })();
