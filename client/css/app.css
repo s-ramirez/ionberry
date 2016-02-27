@@ -1,9 +1,18 @@
 body {
   font-family: 'Helvetica Neue' !important;
+  background-color: #efefef !important;
+}
+
+md-content {
+  background-color: #efefef !important;
 }
 
 md-dialog {
   min-width: 50%;
+}
+
+#clone-dialog md-input-container {
+  padding-bottom: 10px
 }
 
 .repo-card {
@@ -13,7 +22,8 @@ md-dialog {
 
 .repo-card .md-title {
   position: absolute;
-  top: 15px;
+  font-size: 18px;
+  top: 18px;
 }
 
 .repo-card .md-subhead {

@@ -65,7 +65,7 @@
       $scope.clone = function() {
         $scope.error = false;
         $scope.cloning = true;
-        gitService.clone($scope.url, $scope.path).then(function(response) {
+        gitService.clone($scope.url, $scope.path, $scope.name).then(function(response) {
           $scope.cloning = false;
           if(response && !response.error) {
             $mdDialog.hide();

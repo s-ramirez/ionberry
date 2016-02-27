@@ -1,4 +1,4 @@
-<md-dialog ng-cloak>
+<md-dialog id="clone-dialog" ng-cloak>
   <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -16,6 +16,10 @@
     </md-toolbar>
     <md-dialog-content>
       <div class="md-dialog-content">
+        <md-input-container>
+          <label>Name</label>
+          <input ng-model="name">
+        </md-input-container>
         <md-input-container>
           <label>Repo URL</label>
           <input ng-model="url">

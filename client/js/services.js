@@ -18,11 +18,11 @@
       return false;
     }
 
-    function clone(url, path) {
+    function clone(url, path, name) {
       var defer = $q.defer();
       git.clone(url, path, function(response){
         if(!response) {
-          defer.resolve(addRepo(path))
+          defer.resolve(addRepo({'url': url, 'path': path, 'name': name}));
         } else {
           console.log('Error cloning repository');
           defer.resolve({error: response})
@@ -46,6 +46,12 @@
 
         settings.repos.push(val);
         return setSetting('settings', settings);
+      });
+    }
+
+    function clear() {
+      storage.clear(function(error) {
+        if (error) throw error;
       });
     }
 
