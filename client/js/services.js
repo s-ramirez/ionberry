@@ -38,9 +38,8 @@
 
       local.push('origin', 'master', function(error, response){
         if(!error) {
-          defer.resolve(addRepo({'url': url, 'path': path, 'name': name}));
+          defer.resolve(response);
         } else {
-          console.log('Error cloning repository');
           defer.resolve({error: response})
         }
       });

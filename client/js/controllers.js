@@ -121,12 +121,25 @@
           if(!results.error) {
             vm.status = results.success;
 
+            vm.ahead = results.success.ahead;
+            vm.behind = results.success.behind;
+            
             vm.changes = 0;
             vm.changes += vm.status.conflicted.length;
             vm.changes += vm.status.created.length;
             vm.changes += vm.status.deleted.length;
             vm.changes += vm.status.modified.length;
             vm.changes += vm.status.not_added.length;
+          }
+        });
+      }
+
+      vm.push = function () {
+        vm.pushing = true;
+        gitService.push(vm.repo.path).then(function(results) {
+          if(!results.error) {
+            vm.refresh();
+            vm.pushing = false;
           }
         });
       }
