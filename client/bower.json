@@ -29,6 +29,7 @@
     "jquery": "~2.1.4",
     "material-design-icons-iconfont": "~2.0.3",
     "angular-material-data-table": "~0.9.11",
-    "dragular": "~4.0.0"
+    "dragular": "~4.0.0",
+    "moment": "momentjs#~2.11.2"
   }
 }

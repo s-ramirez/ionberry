@@ -40,21 +40,21 @@
 </md-toolbar>
 <div layout="column" layout-align="top center" flex>
   <md-table-container>
-    <table md-table md-progress="repo.loading">
+    <table md-table md-progress="repo.loading" flex>
       <thead md-head md-order="repo.query.order">
         <tr md-row>
           <th md-column>Message</th>
           <th md-column>Author</th>
           <th md-column md-numeric>Date</th>
-          <th md-column>Hash</th>
+          <th md-column>Commit</th>
         </tr>
       </thead>
       <tbody md-body>
         <tr md-row ng-repeat="commit in repo.commits">
-          <td md-cell>{{::commit.message}}</td>
-          <td md-cell>{{::commit.author_name}} <{{::commit.author_email}}></td>
-          <td md-cell>{{::commit.date | date: 'MM/dd/yyyy'}}</td>
-          <td md-cell>{{::commit.hash}}</td>
+          <td md-cell >{{::commit.message}}</td>
+          <td md-cell flex="20">{{::commit.author_name}} <{{::commit.author_email}}></td>
+          <td md-cell flex="10">{{::commit.date | moment: 'format': 'MMM DD, YYYY' }}</td>
+          <td md-cell flex="10">{{::commit.hash | limitTo : 6: 1}}</td>
         </tr>
       </tbody>
     </table>

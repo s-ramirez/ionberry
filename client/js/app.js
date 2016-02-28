@@ -10,6 +10,7 @@ angular.module('app',
   "app.controllers",
   "app.directives",
   "app.services",
+  "app.filters",
   "app.routes"
 ])
 .config(function($mdThemingProvider) {
