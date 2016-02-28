@@ -13,6 +13,7 @@
       loadRepos: loadRepos,
       addRepo: addRepo,
       status: status,
+      commit: commit,
       fetch: fetch,
       log: log
     }
@@ -39,6 +40,20 @@
           defer.resolve({success: response });
         } else {
           defer.resolve({error: response});
+        }
+      });
+      return defer.promise;
+    }
+
+    function commit(path, files, message) {
+      var defer = $q.defer();
+      var local = require('simple-git')(__dirname + '/'+ path);
+
+      local.commit(message, files, function(error, response) {
+        if(!error) {
+          defer.resolve({success: response });
+        } else {
+          defer.resolve({error: error});
         }
       });
       return defer.promise;

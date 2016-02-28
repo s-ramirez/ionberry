@@ -6,7 +6,7 @@
       .controller('MainController', ['$scope', '$rootScope', '$location', 'electron', '$mdDialog', '$mdMedia', '$mdSidenav', 'gitService', MainController])
       .controller('DialogController', ['$scope', '$mdDialog', 'gitService', DialogController])
       .controller('RepoController', ['$rootScope', '$location', '$routeParams', 'gitService', RepoController])
-      .controller('CommitController', ['$scope','$rootScope', '$routeParams', 'dragularService','gitService', CommitController]);
+      .controller('CommitController', ['$scope','$rootScope', '$routeParams', '$location', 'dragularService','gitService', CommitController]);
 
     // Main controller
     function MainController($scope, $rootScope, $location, electron, $mdDialog, $mdMedia, $mdSidenav, gitService) {
@@ -147,7 +147,7 @@
       vm.init();
     }
 
-    function CommitController($scope, $rootScope, $routeParams, dragularService, gitService) {
+    function CommitController($scope, $rootScope, $routeParams, $location, dragularService, gitService) {
       var vm = this;
       vm.staged = [];
       vm.changedFiles = [];
@@ -202,17 +202,42 @@
         accepts: dragger,
         nameSpace: 'common'
       };
+
       vm.dragularOptions2 = {
         scope: $scope,
         containersModel: vm.staged,
         accepts: dragger,
         nameSpace: 'common'
       };
+
       vm.repo = {
         name: $routeParams.name,
         path: $routeParams.path,
         url: $routeParams.url
       };
+
+      vm.commit = function() {
+        var files = [];
+        vm.loading = true;
+
+        for(var i = 0; i < vm.staged.length; i++) {
+          files.push(vm.staged[i].file);
+        }
+
+        gitService.commit(vm.repo.path, files, vm.message).then(function(response) {
+          if(response.success) {
+            $mdDialog.show(
+              $mdDialog.alert()
+              .parent(angular.element(document.querySelector('#commit-container')))
+              .clickOutsideToClose(true)
+              .title('This is an alert title')
+              .textContent('You can specify some description text in here.')
+              .ok('Got it!')
+            );
+          }
+          vm.loading = false;
+        });
+      }
 
       vm.getIcon = function(icon) {
         if(icon == "modified")
@@ -240,6 +265,10 @@
         });
       }
 
+      vm.navigateTo = function(url) {
+        $location.path(url);
+      }
+      
       vm.init();
     }
 })();

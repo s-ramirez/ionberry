@@ -1,19 +1,12 @@
 <md-toolbar>
   <div class="md-toolbar-tools">
-    <md-button ng-click="" class="md-icon-button">
+    <md-button ng-click="commit.navigateTo('/')" class="md-icon-button">
       <md-icon>arrow_back</md-icon>
     </md-button>
     <span id="md-toolbar-title">Commit</span>
-    <span flex></span>
-    <md-button ng-click="main.cloneDialog($event)" ng-disabled="!commit.staged.length" class="md-icon-button">
-      <md-tooltip md-direction="bottom">
-         Done
-       </md-tooltip>
-      <md-icon>done</md-icon>
-    </md-button>
   </div>
 </md-toolbar>
-<div layout="row" flex>
+<div id="commit-container" layout="row" flex>
   <div class="md-padding" layout="column" flex="50">
     <h1 class="bag-title">Working copy</h1>
     <div class="dragbag" id="left" dragular="commit.dragularOptions" flex>
@@ -46,6 +39,14 @@
       </md-card>
     </div>
   </div>
-  <pre>{{commit.staged|json}}</pre>
-  <pre>{{commit.changedFiles|json}}</pre>
+</div>
+<div class="md-padding commit-msg" layout="row">
+  <md-input-container class="md-block" layout="column" flex="90">
+    <label>Message</label>
+    <input ng-model="commit.message">
+  </md-input-container>
+  <md-button ng-if="!commit.loading" ng-disabled="!commit.staged.length" ng-click="commit.commit()" class="md-raised md-warn" flex="10">Commit</md-button>
+  <div ng-if="commit.loading" layout-align="space-around" flex="10">
+    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+  </div>
 </div>

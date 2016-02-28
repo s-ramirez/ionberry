@@ -92,6 +92,7 @@ md-dialog {
 }
 .dragbag {
   border: 1px solid #cdcdcd;
+  background-color: #dfdfdf;
 }
 
 .bag-title {
@@ -120,4 +121,14 @@ md-dialog {
 }
 .staging .deleted md-icon {
   background-color: #ff8a81;
+}
+
+.commit-msg {
+  background-color: white;
+  border-top: 1px solid #dedede;
+}
+
+.commit-msg md-input-container {
+  height: 40px;
+  margin: 15px 0 0;;
 }
