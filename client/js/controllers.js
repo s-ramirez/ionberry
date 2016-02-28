@@ -6,7 +6,7 @@
       .controller('MainController', ['$scope', '$rootScope', '$location', 'electron', '$mdDialog', '$mdMedia', '$mdSidenav', 'gitService', MainController])
       .controller('DialogController', ['$scope', '$mdDialog', 'gitService', DialogController])
       .controller('RepoController', ['$rootScope', '$location', '$routeParams', 'gitService', RepoController])
-      .controller('CommitController', ['$scope','$rootScope', '$routeParams', '$location', 'dragularService','gitService', CommitController]);
+      .controller('CommitController', ['$scope','$rootScope', '$routeParams', '$location', '$mdDialog', 'dragularService','gitService', CommitController]);
 
     // Main controller
     function MainController($scope, $rootScope, $location, electron, $mdDialog, $mdMedia, $mdSidenav, gitService) {
@@ -20,10 +20,6 @@
       }
 
       vm.init = function() {
-        $rootScope.window = {
-          title: "Repositories",
-          options: 0
-        }
         gitService.loadRepos().then(function(repos) {
           vm.settings = repos;
         });
@@ -107,11 +103,6 @@
       };
 
       vm.init = function () {
-        $rootScope.window = {
-          title: vm.repo.name,
-          options: 1
-        };
-
         vm.loading = true;
         gitService.log(vm.repo.path).then(function(results) {
           if(!results.error)
@@ -147,17 +138,13 @@
       vm.init();
     }
 
-    function CommitController($scope, $rootScope, $routeParams, $location, dragularService, gitService) {
+    function CommitController($scope, $rootScope, $routeParams, $location, $mdDialog, dragularService, gitService) {
       var vm = this;
       vm.staged = [];
       vm.changedFiles = [];
 
       vm.init = function () {
         vm.getStatus();
-        $rootScope.window = {
-          title: vm.repo.name,
-          options: 1
-        };
       };
       function dragger(el, target, source, sibling) {
         if(el.parentNode != target) {
@@ -230,9 +217,9 @@
               $mdDialog.alert()
               .parent(angular.element(document.querySelector('#commit-container')))
               .clickOutsideToClose(true)
-              .title('This is an alert title')
-              .textContent('You can specify some description text in here.')
-              .ok('Got it!')
+              .title('Committed succesfully!')
+              .textContent('Commit: '+response.success.commit + "( changes: " + response.success.changes + ", deletions: " + response.success.deletions + ", insertions: " + response.success.insertions + " )")
+              .ok('Awesome!')
             );
           }
           vm.loading = false;
@@ -268,7 +255,7 @@
       vm.navigateTo = function(url) {
         $location.path(url);
       }
-      
+
       vm.init();
     }
 })();

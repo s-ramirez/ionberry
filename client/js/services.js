@@ -15,6 +15,7 @@
       status: status,
       commit: commit,
       fetch: fetch,
+      push: push,
       log: log
     }
 
@@ -22,6 +23,21 @@
       var defer = $q.defer();
       git.clone(url, path, function(response){
         if(!response) {
+          defer.resolve(addRepo({'url': url, 'path': path, 'name': name}));
+        } else {
+          console.log('Error cloning repository');
+          defer.resolve({error: response})
+        }
+      });
+      return defer.promise;
+    }
+
+    function push(path) {
+      var defer = $q.defer();
+      var local = require('simple-git')(__dirname + '/'+ path);
+
+      local.push('origin', 'master', function(error, response){
+        if(!error) {
           defer.resolve(addRepo({'url': url, 'path': path, 'name': name}));
         } else {
           console.log('Error cloning repository');
