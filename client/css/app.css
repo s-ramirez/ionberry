@@ -90,3 +90,34 @@ md-dialog {
   height: 20px;
   line-height: 20px;
 }
+.dragbag {
+  border: 1px solid #cdcdcd;
+}
+
+.bag-title {
+  text-align: center;
+  font-size: 14px;
+}
+
+.dragbag md-card {
+  cursor: pointer;
+}
+
+.md-subhead.modified {
+  color: #ef6c01;
+}
+.staging .modified md-icon {
+  background-color: #ef6c01;
+}
+.md-subhead.not_added {
+  color: #02c754;
+}
+.staging .not_added md-icon {
+  background-color: #02c754;
+}
+.md-subhead.deleted {
+  color: #ff8a81;
+}
+.staging .deleted md-icon {
+  background-color: #ff8a81;
+}

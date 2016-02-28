@@ -10,5 +10,10 @@ function($routeProvider) {
     controller: "RepoController",
     controllerAs: "repo"
   })
+  .when('/commit', {
+    templateUrl: "client/tpl/commit.html",
+    controller: "CommitController",
+    controllerAs: "commit"
+  })
   .otherwise('/');
 }]);

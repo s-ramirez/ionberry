@@ -1,8 +1,6 @@
-/**
- * Amy is Awesome!
- */
 angular.module('app',
 [
+  "dragularModule",
   "ngElectron",
   "ngAnimate",
   "ngAria",

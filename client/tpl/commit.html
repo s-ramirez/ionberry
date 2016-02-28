@@ -1,0 +1,51 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button ng-click="" class="md-icon-button">
+      <md-icon>arrow_back</md-icon>
+    </md-button>
+    <span id="md-toolbar-title">Commit</span>
+    <span flex></span>
+    <md-button ng-click="main.cloneDialog($event)" ng-disabled="!commit.staged.length" class="md-icon-button">
+      <md-tooltip md-direction="bottom">
+         Done
+       </md-tooltip>
+      <md-icon>done</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<div layout="row" flex>
+  <div class="md-padding" layout="column" flex="50">
+    <h1 class="bag-title">Working copy</h1>
+    <div class="dragbag" id="left" dragular="commit.dragularOptions" flex>
+      <md-card id="{{item.file}}" ng-repeat="item in commit.changedFiles" >
+       <md-card-header>
+         <md-card-avatar class="{{item.type}}">
+           <md-icon>{{commit.getIcon(item.type)}}</md-icon>
+         </md-card-avatar>
+         <md-card-header-text>
+           <span class="md-title">{{item.file}}</span>
+           <span class="md-subhead" ng-class="item.type">{{item.type}}</span>
+         </md-card-header-text>
+       </md-card-header>
+      </md-card>
+    </div>
+  </div>
+  <div class="md-padding staging" layout="column" flex="50">
+    <h1 class="bag-title">Staging</h1>
+    <div class="dragbag" id="right" dragular="commit.dragularOptions2" flex>
+      <md-card id="{{item.file}}" ng-repeat="item in commit.staged">
+       <md-card-header>
+         <md-card-avatar class="{{item.type}}">
+           <md-icon>{{commit.getIcon(item.type)}}</md-icon>
+         </md-card-avatar>
+         <md-card-header-text>
+           <span class="md-title">{{item.file}}</span>
+           <span class="md-subhead" ng-class="item.type">{{item.type}}</span>
+         </md-card-header-text>
+       </md-card-header>
+      </md-card>
+    </div>
+  </div>
+  <pre>{{commit.staged|json}}</pre>
+  <pre>{{commit.changedFiles|json}}</pre>
+</div>

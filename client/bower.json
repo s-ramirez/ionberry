@@ -29,6 +29,6 @@
     "jquery": "~2.1.4",
     "material-design-icons-iconfont": "~2.0.3",
     "angular-material-data-table": "~0.9.11",
-    "angular-dragula": "~1.2.5"
+    "dragular": "~4.0.0"
   }
 }
