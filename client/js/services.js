@@ -16,6 +16,7 @@
       commit: commit,
       fetch: fetch,
       push: push,
+      pull: pull,
       log: log
     }
 
@@ -37,6 +38,20 @@
       var local = require('simple-git')(__dirname + '/'+ path);
 
       local.push('origin', 'master', function(error, response){
+        if(!error) {
+          defer.resolve(response);
+        } else {
+          defer.resolve({error: response})
+        }
+      });
+      return defer.promise;
+    }
+
+    function pull(path) {
+      var defer = $q.defer();
+      var local = require('simple-git')(__dirname + '/'+ path);
+
+      local.pull('origin', 'master', function(error, response){
         if(!error) {
           defer.resolve(response);
         } else {

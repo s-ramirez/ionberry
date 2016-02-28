@@ -123,7 +123,7 @@
 
             vm.ahead = results.success.ahead;
             vm.behind = results.success.behind;
-            
+
             vm.changes = 0;
             vm.changes += vm.status.conflicted.length;
             vm.changes += vm.status.created.length;
@@ -135,11 +135,21 @@
       }
 
       vm.push = function () {
-        vm.pushing = true;
+        vm.loading = true;
         gitService.push(vm.repo.path).then(function(results) {
           if(!results.error) {
             vm.refresh();
             vm.pushing = false;
+          }
+        });
+      }
+
+      vm.pull = function () {
+        vm.loading = true;
+        gitService.pull(vm.repo.path).then(function(results) {
+          if(!results.error) {
+            vm.refresh();
+            vm.loading = false;
           }
         });
       }
