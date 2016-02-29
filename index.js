@@ -16,7 +16,7 @@ require('electron-debug')({
 
 function createMainWindow () {
 	const win = new BrowserWindow({
-		width: 800,
+		width: 1024,
 		height: 600,
 		resizable: true
 	});
@@ -34,9 +34,7 @@ function onClosed() {
 let mainWindow;
 
 app.on('window-all-closed', function () {
-	if (process.platform !== 'darwin') {
 		app.quit();
-	}
 });
 
 app.on('activate', function () {

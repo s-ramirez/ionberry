@@ -132,3 +132,9 @@ md-dialog {
   height: 40px;
   margin: 15px 0 0;;
 }
+
+.md-fab {
+  position: absolute;
+  right: 25px;
+  top: 55%;
+}
